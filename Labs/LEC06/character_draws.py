@@ -42,5 +42,5 @@ def movetriangle():
     print("삼각형 이동")
     pass
 
-movebottom()
+moveleft()
 close_canvas()
