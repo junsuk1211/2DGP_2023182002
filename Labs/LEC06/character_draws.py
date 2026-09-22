@@ -29,7 +29,8 @@ def movetop():
    for x in range(50,751,5):
       drawcharacter(x,550)
 def moveright():
-   print("오른쪽 이동")
+   for y in range(550,49,-5):
+      drawcharacter(750,y)
 def movebottom():
    print("아래 이동")
 def moveleft():
