@@ -1,12 +1,19 @@
 # 실습 과제 진행
+import math
 from pico2d import*
 
 open_canvas(800,600)
 character = load_image('character.png')
 
 def movecircle():
-    print("원 이동")
-    pass 
+    print("원 이동")  
+    theta = math.radians(degree)
+    x = 400 + 200 * math.cos(theta)
+    y = 300 + 200 * math.sin(theta)
+    clear_canvas()
+    character.draw(400,300)
+    update_canvas()
+    pass
 
 def moverectangle():
     print("사각형 이동")    
@@ -21,4 +28,5 @@ while True:
     moverectangle()
     movetriangle()
     pass
+
 close_canvas()
