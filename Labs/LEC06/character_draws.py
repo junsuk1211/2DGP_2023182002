@@ -33,9 +33,10 @@ def moveright():
       drawcharacter(750,y)
 def movebottom():
    for x in range(750,49,-5):
-      drawcharacter(x,100)
+      drawcharacter(x,50)
 def moveleft():
-   print("왼쪽 이동")
+   for y in range(50,551,5):
+      drawcharacter(50,y)
 
 def movetriangle():
     print("삼각형 이동")
