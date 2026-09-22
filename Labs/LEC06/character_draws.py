@@ -32,7 +32,8 @@ def moveright():
    for y in range(550,49,-5):
       drawcharacter(750,y)
 def movebottom():
-   print("아래 이동")
+   for x in range(750,49,-5):
+      drawcharacter(x,100)
 def moveleft():
    print("왼쪽 이동")
 
