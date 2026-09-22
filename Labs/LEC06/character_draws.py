@@ -17,8 +17,19 @@ def movecircle():
     pass
 
 def moverectangle():
-    print("사각형 이동")    
+    movetop()
+    moveright()
+    movebottom()
+    moveleft()
     pass
+def movetop():
+   print("위 이동")
+def moveright():
+   print("오른쪽 이동")
+def movebottom():
+   print("아래 이동")
+def moveleft():
+   print("왼쪽 이동")
 
 def movetriangle():
     print("삼각형 이동")
