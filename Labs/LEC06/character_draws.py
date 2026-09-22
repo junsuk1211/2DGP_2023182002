@@ -26,7 +26,8 @@ def moverectangle():
     moveleft()
     pass
 def movetop():
-   print("위 이동")
+   for x in range(50,751,5):
+      drawcharacter(x,550)
 def moveright():
    print("오른쪽 이동")
 def movebottom():
