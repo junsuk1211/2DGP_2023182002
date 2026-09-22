@@ -42,10 +42,5 @@ def movetriangle():
     print("삼각형 이동")
     pass
 
-while True:
-    movecircle()
-    moverectangle()
-    movetriangle()
-    pass
-
+movetop()
 close_canvas()
