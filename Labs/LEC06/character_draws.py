@@ -48,7 +48,16 @@ def movetriangle():
     pass
 
 def moveab():
-   print("a--b까지")
+   x0,y0 = pointa
+   x1,y1 = pointb
+
+   n= 100
+
+   for step in range(n+1):
+      t = step /n
+      x = x0 + (x1 - x0) * t
+      y = y0 + (y1 - y0) * t
+      drawcharacter(x,y)
    pass
 def movebc():
    print("b--c까지")
