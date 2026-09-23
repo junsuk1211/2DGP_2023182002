@@ -83,6 +83,7 @@ def moveca():
          y = y0 + (y1 - y0) * t
          drawcharacter(x,y)
      pass
-
+movecircle()
+moverectangle()
 movetriangle()
 close_canvas()
