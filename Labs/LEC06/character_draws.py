@@ -4,7 +4,9 @@ from pico2d import*
 
 open_canvas(800,600)
 character = load_image('character.png')
-
+pointa = (100,100)
+pointb = (700,100)
+pointc = (400,500)
 def drawcharacter(x,y):
    clear_canvas()
    character.draw(x,y)
@@ -39,7 +41,7 @@ def moveleft():
       drawcharacter(50,y)
 
 def movetriangle():
-    print("삼각형 이동")
+    
     pass
 
 while True:
