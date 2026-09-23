@@ -1,4 +1,4 @@
-# 원 → 사각형 → 삼각형 이동을 무한 반복한다.
+# DRILL #6: 원 → 사각형 → 삼각형 이동을 무한 반복한다.
 import math
 from pico2d import *
 
