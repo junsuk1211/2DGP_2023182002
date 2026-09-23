@@ -8,6 +8,7 @@ pointa = (100,100)
 pointb = (700,100)
 pointc = (400,500)
 def drawcharacter(x,y):
+   get_events()
    clear_canvas()
    character.draw(x,y)
    update_canvas()
@@ -41,8 +42,20 @@ def moveleft():
       drawcharacter(50,y)
 
 def movetriangle():
-    
+    moveab()
+    movebc()
+    moveca()
     pass
+
+def moveab():
+   print("a--b까지")
+   pass
+def movebc():
+   print("b--c까지")
+   pass
+def moveca():
+   print("c--a까지")
+   pass
 
 while True:
      movecircle()
