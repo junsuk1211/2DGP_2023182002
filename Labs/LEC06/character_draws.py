@@ -84,5 +84,5 @@ def moveca():
          drawcharacter(x,y)
      pass
 
-moveca()
+movecircle()
 close_canvas()
