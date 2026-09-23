@@ -72,8 +72,17 @@ def movebc():
          drawcharacter(x,y)
      pass
 def moveca():
-   print("c--a까지")
-   pass
+     x0,y0 = pointc
+     x1,y1 = pointa
+   
+     n= 100
+   
+     for step in range(n+1):
+         t = step /n
+         x = x0 + (x1 - x0) * t
+         y = y0 + (y1 - y0) * t
+         drawcharacter(x,y)
+     pass
 
 while True:
      movecircle()
