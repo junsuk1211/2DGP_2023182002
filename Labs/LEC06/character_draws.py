@@ -52,6 +52,9 @@ def movetriangle():
    print("삼각형 이동")
    pass
 
+def move_ab():
+   pass
+
 while True:
    movecircle()
    moverectangle()
