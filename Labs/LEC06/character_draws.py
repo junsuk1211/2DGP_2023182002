@@ -56,8 +56,15 @@ def movetriangle():
    pass
 
 def move_ab():
-   for x in range(point_a[0], point_b[0] + 1, 5):
-      print(x, point_a[1])
+   x0, y0 = point_a
+   x1, y1 = point_b
+   n = 100
+
+   for step in range(n + 1):
+      t = step / n
+      x = x0 + (x1 - x0) * t
+      y = y0 + (y1 - y0) * t
+      draw_character(x, y)
 
 def move_bc():
    pass
