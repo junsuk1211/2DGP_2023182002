@@ -56,7 +56,8 @@ def movetriangle():
    pass
 
 def move_ab():
-   pass
+   for x in range(point_a[0], point_b[0] + 1, 5):
+      print(x, point_a[1])
 
 def move_bc():
    pass
