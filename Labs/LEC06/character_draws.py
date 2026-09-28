@@ -58,6 +58,9 @@ def move_ab():
 def move_bc():
    pass
 
+def move_ca():
+   pass
+
 while True:
    movecircle()
    moverectangle()
