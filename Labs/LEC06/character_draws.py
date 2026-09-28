@@ -4,6 +4,9 @@ from pico2d import*
 
 open_canvas(800,600)
 character = load_image('character.png')
+point_a = (100, 100)
+point_b = (700, 100)
+point_c = (400, 500)
 
 def movecircle():
    for degree in range(0,360):
