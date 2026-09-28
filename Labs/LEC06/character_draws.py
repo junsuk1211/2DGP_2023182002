@@ -78,7 +78,12 @@ def move_bc():
       draw_character(x, y)
 
 def move_ca():
-   pass
+   x0, y0 = point_c
+   x1, y1 = point_a
+   n = 100
+
+   for step in range(n + 1):
+      t = step / n
 
 while True:
    movecircle()
