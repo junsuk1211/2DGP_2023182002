@@ -67,7 +67,12 @@ def move_ab():
       draw_character(x, y)
 
 def move_bc():
-   pass
+   x0, y0 = point_b
+   x1, y1 = point_c
+   n = 100
+
+   for step in range(n + 1):
+      t = step / n
 
 def move_ca():
    pass
