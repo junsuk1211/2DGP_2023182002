@@ -22,6 +22,7 @@ def move_top():
    pass
 
 def draw_character(x,y):
+      get_events()
       clear_canvas()
       character.draw(x,y)
       update_canvas()
