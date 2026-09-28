@@ -55,6 +55,9 @@ def movetriangle():
 def move_ab():
    pass
 
+def move_bc():
+   pass
+
 while True:
    movecircle()
    moverectangle()
