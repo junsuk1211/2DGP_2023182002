@@ -37,6 +37,8 @@ def move_bottom():
    pass
 def move_left():
    print('left')
+   for y in range(50,551,5):
+      draw_character(50,y)
    pass
 
 def moverectangle():
