@@ -50,6 +50,9 @@ def moverectangle():
 
 def movetriangle():
    print("삼각형 이동")
+   move_ab()
+   move_bc()
+   move_ca()
    pass
 
 def move_ab():
