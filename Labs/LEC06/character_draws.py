@@ -41,7 +41,6 @@ def move_left():
    pass
 
 def moverectangle():
-   print("사각형 이동")
    move_top()
    move_right()
    move_bottom()
@@ -49,7 +48,6 @@ def moverectangle():
    pass
 
 def movetriangle():
-   print("삼각형 이동")
    move_ab()
    move_bc()
    move_ca()
