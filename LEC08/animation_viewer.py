@@ -8,6 +8,7 @@ BASE = Path(__file__).resolve().parent
 def main():
     import pico2d as p
     p.open_canvas(WIDTH, HEIGHT)
+    atlas = p.load_image(str(BASE / 'assets/naruto_atlas.png'))
     p.close_canvas()
 
 if __name__ == '__main__':
