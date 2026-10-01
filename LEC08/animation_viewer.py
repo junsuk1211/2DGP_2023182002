@@ -21,8 +21,12 @@ def main():
         last = now
         p.clear_canvas()
         frame = player.clip.frames[player.frame_index]
+        # Keep the union of each clip centered; feet share a stable baseline.
+        max_height = max(item.height for item in player.clip.frames) * SCALE
+        baseline = HEIGHT / 2 - max_height / 2
+        center_y = baseline + frame.height * SCALE / 2
         atlas.clip_draw(frame.x, atlas.h - frame.y - frame.height,
-                        frame.width, frame.height, WIDTH // 2, HEIGHT // 2,
+                        frame.width, frame.height, WIDTH // 2, center_y,
                         frame.width * SCALE, frame.height * SCALE)
         p.update_canvas()
         p.delay(0.01)
