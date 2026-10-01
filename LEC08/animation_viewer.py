@@ -12,6 +12,18 @@ def main():
     clips = load_clips(BASE / 'assets/animations.json')
     player = Playback(clips)
     atlas = p.load_image(str(BASE / 'assets/naruto_atlas.png'))
+    last = p.get_time()
+    running = True
+    while running:
+        now = p.get_time()
+        player.update(now - last)
+        last = now
+        p.clear_canvas()
+        frame = player.clip.frames[player.frame_index]
+        atlas.clip_draw(frame.x, atlas.h - frame.y - frame.height,
+                        frame.width, frame.height, WIDTH // 2, HEIGHT // 2)
+        p.update_canvas()
+        p.delay(0.01)
     p.close_canvas()
 
 if __name__ == '__main__':
