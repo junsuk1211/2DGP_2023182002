@@ -8,7 +8,7 @@ SCALE = 8
 BASE = Path(__file__).resolve().parent
 
 def main():
-    import pico2d as p
+    import pico2d.pico2d as p
     p.open_canvas(WIDTH, HEIGHT)
     p.SDL_SetHint(p.SDL_HINT_RENDER_SCALE_QUALITY, b'0')
     p.SDL_SetWindowTitle(p.window, b'Naruto | Run / Walk / Jump / Y Combo')

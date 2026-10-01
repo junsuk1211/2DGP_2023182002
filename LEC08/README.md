@@ -37,7 +37,7 @@ python -m pip install -r LEC08/tools/requirements.txt
 python LEC08/tools/extract_sprites.py
 ```
 원본은 사용자가 제공한 Nintendo DS 게임의 Naruto 스프라이트 시트입니다.
-시트에 적힌 출처: Naruto Shippuden: Ninja Council 4, ripped by Mr. C.
+시트에 적힌 출처: Naruto Shippuden: Ninja Council 4, ripped by NEIMAD.
 원본 크레딧을 포함한 시트를 `assets/naruto_source.png`에 보존했습니다.
 초록 배경 `(0,128,0)`을 투명하게 처리하고 네 동작만 아틀라스로 추출합니다.
 
@@ -45,3 +45,5 @@ python LEC08/tools/extract_sprites.py
 ```powershell
 python -m unittest discover -s LEC08 -v
 ```
+
+실제 실행 화면은 `preview.png`, 검증 결과는 `VALIDATION.md`에서 확인할 수 있습니다.
