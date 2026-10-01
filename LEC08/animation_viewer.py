@@ -4,6 +4,7 @@ from animation_data import load_clips
 from playback import Playback
 
 WIDTH, HEIGHT = 1000, 800
+SCALE = 8
 BASE = Path(__file__).resolve().parent
 
 def main():
@@ -21,7 +22,8 @@ def main():
         p.clear_canvas()
         frame = player.clip.frames[player.frame_index]
         atlas.clip_draw(frame.x, atlas.h - frame.y - frame.height,
-                        frame.width, frame.height, WIDTH // 2, HEIGHT // 2)
+                        frame.width, frame.height, WIDTH // 2, HEIGHT // 2,
+                        frame.width * SCALE, frame.height * SCALE)
         p.update_canvas()
         p.delay(0.01)
     p.close_canvas()
