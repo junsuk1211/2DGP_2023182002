@@ -10,6 +10,7 @@ class Playback:
         return self.clips[self.clip_index]
 
     REPEATS = 5
+    PAUSE_SECONDS = 1.0
 
     @property
     def active_duration(self):
@@ -25,5 +26,12 @@ class Playback:
             return len(self.clip.frames) - 1
         return int(self.elapsed * self.clip.fps + 1e-9) % len(self.clip.frames)
 
+    @property
+    def is_paused(self):
+        return self.elapsed >= self.active_duration
+
     def update(self, dt):
         self.elapsed += max(0.0, dt)
+        while self.elapsed + 1e-9 >= self.active_duration + self.PAUSE_SECONDS:
+            self.elapsed = max(0.0, self.elapsed - self.active_duration - self.PAUSE_SECONDS)
+            self.clip_index = (self.clip_index + 1) % len(self.clips)
