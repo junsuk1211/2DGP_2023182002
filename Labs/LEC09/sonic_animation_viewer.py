@@ -7,6 +7,7 @@ import pico2d
 
 WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 800
+SCALE = 10
 IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 
@@ -26,7 +27,8 @@ def main():
         while handle_events():
             pico2d.clear_canvas()
             sheet.clip_draw(1, sheet.h - 39 - 39, 29, 39,
-                            WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+                            WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2,
+                            29 * SCALE, 39 * SCALE)
             pico2d.update_canvas()
             pico2d.delay(0.01)
     finally:
