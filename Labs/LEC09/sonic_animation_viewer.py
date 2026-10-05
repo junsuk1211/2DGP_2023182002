@@ -144,8 +144,10 @@ def handle_events():
 
 
 def main():
+    pico2d.SDL_SetHint(pico2d.SDL_HINT_RENDER_SCALE_QUALITY, b"0")
     pico2d.open_canvas(WINDOW_WIDTH, WINDOW_HEIGHT)
     try:
+        pico2d.hide_lattice()
         sheet = pico2d.load_image(str(IMAGE_PATH))
         validate_frames(sheet)
         player = Player()
