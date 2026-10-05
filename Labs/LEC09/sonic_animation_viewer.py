@@ -10,6 +10,8 @@ WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 800
 SCALE = 10
 FRAME_SECONDS = 0.1
+REPEAT_COUNT = 5
+PAUSE_SECONDS = 1.0
 IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 # 프레임 영역은 원본 이미지의 좌측 상단 기준 (x, y, 너비, 높이)다.
@@ -27,6 +29,7 @@ class Player:
         self.animation_index = 0
         self.frame_index = 0
         self.completed = 0
+        self.waiting = False
         self.elapsed = 0.0
 
     @property
@@ -39,12 +42,24 @@ class Player:
 
     def update(self, dt):
         self.elapsed += dt
-        while self.elapsed >= FRAME_SECONDS:
-            self.elapsed -= FRAME_SECONDS
+        while True:
+            duration = PAUSE_SECONDS if self.waiting else FRAME_SECONDS
+            if self.elapsed < duration:
+                break
+            self.elapsed -= duration
+            if self.waiting:
+                self.frame_index = 0
+                self.completed = 0
+                self.waiting = False
+                continue
             self.frame_index += 1
             if self.frame_index == len(self.frames):
                 self.completed += 1
-                self.frame_index = 0
+                if self.completed == REPEAT_COUNT:
+                    self.frame_index = len(self.frames) - 1
+                    self.waiting = True
+                else:
+                    self.frame_index = 0
 
 
 def draw_frame(sheet, frame):
