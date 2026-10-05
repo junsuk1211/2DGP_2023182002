@@ -48,6 +48,7 @@ class Player:
                 break
             self.elapsed -= duration
             if self.waiting:
+                self.animation_index = (self.animation_index + 1) % len(ANIMATIONS)
                 self.frame_index = 0
                 self.completed = 0
                 self.waiting = False
