@@ -25,7 +25,8 @@ def main():
         sheet = pico2d.load_image(str(IMAGE_PATH))
         while handle_events():
             pico2d.clear_canvas()
-            sheet.draw(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+            sheet.clip_draw(1, sheet.h - 39 - 39, 29, 39,
+                            WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
             pico2d.update_canvas()
             pico2d.delay(0.01)
     finally:
