@@ -114,6 +114,18 @@ class Player:
                     self.frame_index = 0
 
 
+def validate_frames(sheet):
+    for name, frames in ANIMATIONS:
+        if not frames:
+            raise ValueError(f"프레임이 없는 동작: {name}")
+        for left, top, width, height in frames:
+            if (left < 0 or top < 0 or width <= 0 or height <= 0
+                    or left + width > sheet.w or top + height > sheet.h):
+                raise ValueError(f"이미지 범위를 벗어난 프레임: {name}")
+            if width * SCALE > WINDOW_WIDTH or height * SCALE > WINDOW_HEIGHT:
+                raise ValueError(f"화면 크기를 벗어난 프레임: {name}")
+
+
 def draw_frame(sheet, frame):
     """좌측 상단 좌표를 변환하고 모든 프레임을 고정 중심에 그린다."""
     left, top, width, height = frame
@@ -135,6 +147,7 @@ def main():
     pico2d.open_canvas(WINDOW_WIDTH, WINDOW_HEIGHT)
     try:
         sheet = pico2d.load_image(str(IMAGE_PATH))
+        validate_frames(sheet)
         player = Player()
         previous = perf_counter()
         while handle_events():
