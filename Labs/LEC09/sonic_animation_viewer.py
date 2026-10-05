@@ -1,4 +1,4 @@
-"""소닉 스프라이트 시트의 동작을 제자리에서 재생한다."""
+"""소닉 스프라이트의 동작을 재생하고 이동 동작의 화면 위치를 갱신한다."""
 
 from pathlib import Path
 from time import perf_counter
@@ -74,6 +74,17 @@ ANIMATIONS = [
     ]),
 ]
 
+# 이동이 있는 동작만 위치를 바꾼다. 나머지 동작은 중앙에서 재생한다.
+MOVEMENT_MODES = {
+    "걷기": "forward",
+    "달리기": "forward",
+    "몸 말기": "forward",
+    "회전": "forward",
+    "고속 회전": "forward",
+    "피격": "backward",
+    "제동": "brake",
+}
+
 
 class Player:
     def __init__(self):
@@ -90,6 +101,26 @@ class Player:
     @property
     def frame(self):
         return self.frames[self.frame_index]
+
+    @property
+    def position(self):
+        name = ANIMATIONS[self.animation_index][0]
+        mode = MOVEMENT_MODES.get(name)
+        if mode is None:
+            return WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2
+
+        # 한 동작의 5회 재생 동안 화면 안을 이동하고 대기 중에는 정지한다.
+        total = len(self.frames) * FRAME_SECONDS * REPEAT_COUNT
+        played = ((self.completed * len(self.frames) + self.frame_index)
+                  * FRAME_SECONDS + self.elapsed)
+        progress = 1.0 if self.waiting else min(1.0, played / total)
+        margin = max(frame[2] for frame in self.frames) * SCALE / 2 + 40
+        left, right = margin, WINDOW_WIDTH - margin
+        if mode == "brake":
+            progress = 1 - (1 - progress) ** 2
+        if mode == "backward":
+            left, right = right, left
+        return left + (right - left) * progress, WINDOW_HEIGHT / 2
 
     def update(self, dt):
         self.elapsed += dt
@@ -127,11 +158,12 @@ def validate_frames(sheet):
                 raise ValueError(f"화면 크기를 벗어난 프레임: {name}")
 
 
-def draw_frame(sheet, frame):
-    """좌측 상단 좌표를 변환하고 모든 프레임을 고정 중심에 그린다."""
+def draw_frame(sheet, frame, position=None):
+    """좌측 상단 좌표를 변환하고 현재 이동 위치에 프레임을 그린다."""
     left, top, width, height = frame
+    x, y = position if position is not None else (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
     sheet.clip_draw(left, sheet.h - top - height, width, height,
-                    WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2,
+                    x, y,
                     width * SCALE, height * SCALE)
 
 
@@ -158,7 +190,7 @@ def main():
             player.update(now - previous)
             previous = now
             pico2d.clear_canvas()
-            draw_frame(sheet, player.frame)
+            draw_frame(sheet, player.frame, player.position)
             pico2d.update_canvas()
             pico2d.delay(0.01)
     finally:
