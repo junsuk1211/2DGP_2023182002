@@ -11,6 +11,14 @@ SCALE = 10
 IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 
+def draw_frame(sheet, frame):
+    """좌측 상단 좌표를 변환하고 모든 프레임을 고정 중심에 그린다."""
+    left, top, width, height = frame
+    sheet.clip_draw(left, sheet.h - top - height, width, height,
+                    WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2,
+                    width * SCALE, height * SCALE)
+
+
 def handle_events():
     for event in pico2d.get_events():
         if event.type == pico2d.SDL_QUIT:
@@ -26,9 +34,7 @@ def main():
         sheet = pico2d.load_image(str(IMAGE_PATH))
         while handle_events():
             pico2d.clear_canvas()
-            sheet.clip_draw(1, sheet.h - 39 - 39, 29, 39,
-                            WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2,
-                            29 * SCALE, 39 * SCALE)
+            draw_frame(sheet, (1, 39, 29, 39))
             pico2d.update_canvas()
             pico2d.delay(0.01)
     finally:
