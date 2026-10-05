@@ -26,6 +26,7 @@ class Player:
     def __init__(self):
         self.animation_index = 0
         self.frame_index = 0
+        self.completed = 0
         self.elapsed = 0.0
 
     @property
@@ -40,7 +41,10 @@ class Player:
         self.elapsed += dt
         while self.elapsed >= FRAME_SECONDS:
             self.elapsed -= FRAME_SECONDS
-            self.frame_index = (self.frame_index + 1) % len(self.frames)
+            self.frame_index += 1
+            if self.frame_index == len(self.frames):
+                self.completed += 1
+                self.frame_index = 0
 
 
 def draw_frame(sheet, frame):
