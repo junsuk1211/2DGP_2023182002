@@ -10,6 +10,15 @@ WINDOW_HEIGHT = 800
 SCALE = 10
 IMAGE_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
+# 프레임 영역은 원본 이미지의 좌측 상단 기준 (x, y, 너비, 높이)다.
+ANIMATIONS = [
+    ("대기", [
+        (1, 39, 29, 39), (31, 40, 26, 38), (58, 39, 29, 39),
+        (87, 40, 29, 38), (118, 40, 30, 38), (150, 40, 30, 38),
+        (182, 40, 30, 38),
+    ]),
+]
+
 
 def draw_frame(sheet, frame):
     """좌측 상단 좌표를 변환하고 모든 프레임을 고정 중심에 그린다."""
@@ -34,7 +43,7 @@ def main():
         sheet = pico2d.load_image(str(IMAGE_PATH))
         while handle_events():
             pico2d.clear_canvas()
-            draw_frame(sheet, (1, 39, 29, 39))
+            draw_frame(sheet, ANIMATIONS[0][1][0])
             pico2d.update_canvas()
             pico2d.delay(0.01)
     finally:
