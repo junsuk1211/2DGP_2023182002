@@ -95,9 +95,10 @@ class Player:
         self.elapsed += dt
         while True:
             duration = PAUSE_SECONDS if self.waiting else FRAME_SECONDS
-            if self.elapsed < duration:
+            # 경계에서 부동소수점 오차로 마지막 대기가 한 틱 늘어나지 않게 한다.
+            if self.elapsed + 1e-9 < duration:
                 break
-            self.elapsed -= duration
+            self.elapsed = max(0.0, self.elapsed - duration)
             if self.waiting:
                 self.animation_index = (self.animation_index + 1) % len(ANIMATIONS)
                 self.frame_index = 0
