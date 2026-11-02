@@ -4,11 +4,13 @@ from pico2d import get_canvas_width, get_time, load_image
 from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
 from transitions import Machine
+from ball import Ball
+import game_world
 
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 400, 90
+        self.x, self.y = 400, 30
         self.frame = 0
         self.image = load_image('animation_sheet.png')
         self.idle_started_at = get_time()
@@ -43,11 +45,19 @@ class Boy:
     def on_enter_RUN(self):
         self.frame = 0
 
+    def shoot_ball(self):
+        ball = Ball(
+            self.x + self.face_dir * 30, self.y - 30, self.face_dir
+        )
+        game_world.add_object(ball, 1)
+
     def handle_event(self, event):
         if (event.type == SDL_KEYDOWN and
-                event.key == SDLK_SPACE and
-                self.state == 'SLEEP'):
-            self.wake_up()
+                event.key == SDLK_SPACE):
+            if self.state == 'SLEEP':
+                self.wake_up()
+            elif self.state in ('IDLE', 'RUN'):
+                self.shoot_ball()
             return
 
         if (event.type not in (SDL_KEYDOWN, SDL_KEYUP) or

@@ -1,5 +1,6 @@
 world = [[], []] # layers for game objects
 
+
 def add_object(o, depth):
     world[depth].append(o)
 
@@ -17,7 +18,7 @@ def remove_object(o):
 
 def update():
     for layer in world:
-        for o in layer:
+        for o in layer[:]:
             o.update()
 
 def render():
